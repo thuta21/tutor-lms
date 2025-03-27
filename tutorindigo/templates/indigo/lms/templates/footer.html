@@ -1,152 +1,112 @@
 ## mako
 <%page expression_filter="h"/>
 <%!
-  from datetime import datetime
-  from django.urls import reverse
-  from django.utils.translation import gettext as _
-  from lms.djangoapps.branding.api import get_footer
-  from openedx.core.djangoapps.lang_pref.api import footer_language_selector_is_enabled
+from datetime import datetime
+from django.urls import reverse
+from django.utils.translation import gettext as _
+from lms.djangoapps.branding.api import get_footer
+from openedx.core.djangoapps.lang_pref.api import footer_language_selector_is_enabled
 %>
 <% footer = get_footer(is_secure=is_secure) %>
 <% icp_license_info = getattr(settings, 'ICP_LICENSE_INFO', {})%>
 <%namespace name='static' file='static_content.html'/>
-<!-- NEW IN INDIGO update footer -->
-% if uses_bootstrap:
+
 <div class="wrapper wrapper-footer">
-  <footer id="footer" class="tutor-container"
-    ## When rendering the footer through the branding API,
-    ## the direction may not be set on the parent element,
-    ## so we set it here.
-    % if bidi:
-      dir=${bidi}
-    % endif
-  >
-  <div class="footer-top">
-    <div class="powered-area">
-      ## Please leave this link and use one of the logos provided
-      ## The OpenEdX link may be hidden when this view is served
-      ## through an API to partner sites (such as marketing sites or blogs),
-      ## which are not technically powered by OpenEdX.
-      % if not hide_openedx_link:
-      <ul class="logo-list">
-        <li>Powered by:</li>
-        <li>
-          <a href="https://docs.tutor.edly.io" rel="noopener" target="_blank">
-            <img src="${static.url('images/tutor-logo.png')}" alt="Runs on Tutor" width="57" />
-          </a>
-        </li>
-        <li>
-          <a href="${footer['openedx_link']['url']}" rel="noopener" target="_blank">
-            <img src="${static.url('images/openedx-logo.png')}" alt="${footer['openedx_link']['title']}" width="79" />
-          </a>
-        </li>
-      </ul>
-    </div>
-    {% if INDIGO_FOOTER_NAV_LINKS %}
-    <nav class="nav-colophon" aria-label="${_('About')}">
-      <ol>
-          {% for link in INDIGO_FOOTER_NAV_LINKS %}
-          <li>
-            <a href="{{ link['url'] }}">{{ link['title'] }}</a>
-          </li>
-          {% endfor %}
-      </ol>
-    </nav>
-    {% endif %}
-  </div>
-  <span class="copyright-site">Copyrights ©${datetime.now().year}. All Rights Reserved.</span>
-  % endif
-    <div class="colophon">
-
-      % if context.get('include_language_selector', footer_language_selector_is_enabled()):
-          <%include file="${static.get_template_path('widgets/footer-language-selector.html')}"/>
-      % endif
-
-      ## Site operators: Please do not remove this paragraph! This attributes back to edX and makes your acknowledgement of edX's trademarks clear.
-        <p class="copyright">${footer['copyright']}
-            % if icp_license_info.get('icp_license'):
-              ${u" | {text}".format(text=icp_license_info.get('text'))}
-              <a href="${icp_license_info.get('icp_license_link', '#')}">
-                  ${u" {icp}".format(icp=icp_license_info.get('icp_license'))}
-              </a>
-            % endif
-        </p>
-    </div>
-  </footer>
-</div>
-% else:
-<!-- NEW IN INDIGO update footer -->
-  <div class="wrapper wrapper-footer">
-    <footer id="footer" class="tutor-container"
-      ## When rendering the footer through the branding API,
-      ## the direction may not be set on the parent element,
-      ## so we set it here.
-      % if bidi:
-        dir=${bidi}
-      % endif
-    >
-    <div class="footer-top">
-      <div class="powered-area">
-        ## Please leave this link and use one of the logos provided
-        ## The OpenEdX link may be hidden when this view is served
-        ## through an API to partner sites (such as marketing sites or blogs),
-        ## which are not technically powered by OpenEdX.
-        % if not hide_openedx_link:
-        <ul class="logo-list">
-          <li>Powered by:</li>
-          <li>
-            <a href="https://docs.tutor.edly.io" rel="noopener" target="_blank">
-              <img src="${static.url('images/tutor-logo.png')}" alt="Runs on Tutor" width="57" />
-            </a>
-          </li>
-          <li>
-            <a href="${footer['openedx_link']['url']}" rel="noopener" target="_blank">
-              <img src="${static.url('images/openedx-logo.png')}" alt="${footer['openedx_link']['title']}" width="79" />
-            </a>
-          </li>
-        </ul>
-      </div>
-      {% if INDIGO_FOOTER_NAV_LINKS %}
-      <nav class="nav-colophon" aria-label="${_('About')}">
-        <ol>
-            {% for link in INDIGO_FOOTER_NAV_LINKS %}
-            <li>
-              <a href="{{ link['url'] }}">{{ link['title'] }}</a>
-            </li>
-            {% endfor %}
-        </ol>
-      </nav>
-      {% endif %}
-    </div>
-    <span class="copyright-site">Copyrights ©${datetime.now().year}. All Rights Reserved.</span>
-    % endif
-      <div class="colophon">
-
-        % if context.get('include_language_selector', footer_language_selector_is_enabled()):
-            <%include file="${static.get_template_path('widgets/footer-language-selector.html')}"/>
-        % endif
-
-        ## Site operators: Please do not remove this paragraph! This attributes back to edX and makes your acknowledgement of edX's trademarks clear.
-          <p class="copyright">${footer['copyright']}
-              % if icp_license_info.get('icp_license'):
-                ${u" | {text}".format(text=icp_license_info.get('text'))}
-                <a href="${icp_license_info.get('icp_license_link', '#')}">
-                    ${u" {icp}".format(icp=icp_license_info.get('icp_license'))}
+    <footer id="footer" class="tutor-container">
+        <div class="footer-top">
+            <div>
+                <a href="https://docs.tutor.edly.io" rel="noopener" target="_blank">
+                    <img src="${static.url('images/logo-white.png')}" alt="Runs on Tutor" height="40"/>
                 </a>
-              % endif
-          </p>
-      </div>
+                <span class="copyright-site">All rights reserved © ${datetime.now().year}</span>
+            </div>
+            <div>
+                <p>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M21.7388 16.4136C21.5716 17.6839 20.9477 18.85 19.9837 19.6939C19.0196 20.5379 17.7813 21.0021 16.5 20.9998C9.05626 20.9998 3.00001 14.9436 3.00001 7.49981C2.99771 6.21852 3.4619 4.98021 4.30588 4.01615C5.14986 3.05209 6.31592 2.42822 7.58626 2.26106C7.9075 2.22184 8.2328 2.28756 8.51362 2.44841C8.79444 2.60926 9.0157 2.85662 9.14438 3.15356L11.1244 7.57387V7.58512C11.2229 7.81242 11.2636 8.06059 11.2428 8.30744C11.222 8.5543 11.1404 8.79217 11.0053 8.99981C10.9884 9.02512 10.9706 9.04856 10.9519 9.072L9.00001 11.3857C9.7022 12.8126 11.1947 14.292 12.6403 14.9961L14.9222 13.0545C14.9446 13.0357 14.9681 13.0181 14.9925 13.002C15.2 12.8636 15.4387 12.7792 15.687 12.7562C15.9353 12.7333 16.1854 12.7727 16.4147 12.8707L16.4269 12.8764L20.8434 14.8554C21.1409 14.9837 21.3889 15.2047 21.5503 15.4856C21.7116 15.7664 21.7778 16.092 21.7388 16.4136Z"
+                              fill="white"></path>
+                    </svg>
+                    +855 38 383 8338
+                </p>
+                <p>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M21 4.5H3C2.80109 4.5 2.61032 4.57902 2.46967 4.71967C2.32902 4.86032 2.25 5.05109 2.25 5.25V18C2.25 18.3978 2.40804 18.7794 2.68934 19.0607C2.97064 19.342 3.35218 19.5 3.75 19.5H20.25C20.6478 19.5 21.0294 19.342 21.3107 19.0607C21.592 18.7794 21.75 18.3978 21.75 18V5.25C21.75 5.05109 21.671 4.86032 21.5303 4.71967C21.3897 4.57902 21.1989 4.5 21 4.5ZM20.25 18H3.75V6.95531L11.4928 14.0531C11.6312 14.1801 11.8122 14.2506 12 14.2506C12.1878 14.2506 12.3688 14.1801 12.5072 14.0531L20.25 6.95531V18Z"
+                              fill="white"></path>
+                    </svg>
+                    info@medcenter.com
+                </p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <a href="#">
+                <span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background-color: #3b5998; margin-right: 5px;"></span>
+                Facebook
+            </a>
+            <a href="#">
+                <span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background-color: #0077b5; margin-right: 5px;"></span>
+                LinkedIn
+            </a>
+            <a href="#">
+                <span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background-color: #FF0000; margin-right: 5px;"></span>
+                Youtube
+            </a>
+            <a href="#">
+                <span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background-color: #e1306c; margin-right: 5px;"></span>
+                Instagram
+            </a>
+            <a href="#">
+                <span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background-color: #69c9d0; margin-right: 5px;"></span>
+                Tiktok
+            </a>
+        </div>
     </footer>
-  </div>
-% endif
+
+<!--?    <div>-->
+<!--?        <div class="powered-area">-->
+<!--?            ## Please leave this link and use one of the logos provided-->
+<!--?            ## The OpenEdX link may be hidden when this view is served-->
+<!--?            ## through an API to partner sites (such as marketing sites or blogs),-->
+<!--?            ## which are not technically powered by OpenEdX.-->
+<!--?            % if not hide_openedx_link:-->
+<!--?            <ul class="logo-list">-->
+<!--?                <li>Powered by:</li>-->
+<!--?                <li>-->
+<!--?                    <a href="https://docs.tutor.edly.io" rel="noopener" target="_blank">-->
+<!--?                        <img src="${static.url('images/tutor-logo.png')}" alt="Runs on Tutor" width="57"/>-->
+<!--?                    </a>-->
+<!--?                </li>-->
+<!--?                <li>-->
+<!--?                    <a href="${footer['openedx_link']['url']}" rel="noopener" target="_blank">-->
+<!--?                        <img src="${static.url('images/openedx-logo.png')}" alt="${footer['openedx_link']['title']}"-->
+<!--?                             width="79"/>-->
+<!--?                    </a>-->
+<!--?                </li>-->
+<!--?            </ul>-->
+<!--?            % endif-->
+<!--?        </div>-->
+<!--?        <div class="colophon">-->
+<!--?            ## Site operators: Please do not remove this paragraph! This attributes back to edX and makes your-->
+<!--?            acknowledgement of edX's trademarks clear.-->
+<!--?            <p class="copyright">${footer['copyright']}-->
+<!--?                % if icp_license_info.get('icp_license'):-->
+<!--?                    ${u" | {text}".format(text=icp_license_info.get('text'))}-->
+<!--?                <a href="${icp_license_info.get('icp_license_link', '#')}">-->
+<!--?                        ${u" {icp}".format(icp=icp_license_info.get('icp_license'))}-->
+<!--?                </a>-->
+<!--?                % endif-->
+<!--?            </p>-->
+<!--?        </div>-->
+<!--?    </div>-->
+</div>
+
 % if include_dependencies:
-  <%static:js group='base_vendor'/>
-  <%static:css group='style-vendor'/>
-  <%include file="widgets/segment-io.html" />
-  <%include file="widgets/segment-io-footer.html" />
+<%static:js group='base_vendor'/>
+<%static:css group='style-vendor'/>
+<%include file="widgets/segment-io.html" />
+<%include file="widgets/segment-io-footer.html" />
 % endif
 % if footer_css_urls:
-  % for url in footer_css_urls:
-    <link rel="stylesheet" type="text/css" href="${url}"></link>
-  % endfor
+% for url in footer_css_urls:
+<link rel="stylesheet" type="text/css" href="${url}"></link>
+% endfor
 % endif

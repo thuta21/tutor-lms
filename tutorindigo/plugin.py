@@ -165,6 +165,12 @@ for filename in javascript_files:
         PIPELINE['JAVASCRIPT'][filename]['source_filenames'] += dark_theme_filepath
 
 MFE_CONFIG['INDIGO_ENABLE_DARK_TOGGLE'] = {{ INDIGO_ENABLE_DARK_TOGGLE }}
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.dummy.DummyCache',
+    }
+}
 """,
         ),
         (
@@ -175,7 +181,6 @@ MFE_CONFIG['INDIGO_ENABLE_DARK_TOGGLE'] = {{ INDIGO_ENABLE_DARK_TOGGLE }}
         ),
     ]
 )
-
 
 # Apply patches from tutor-indigo
 for path in glob(
