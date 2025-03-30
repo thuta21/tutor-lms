@@ -13,12 +13,12 @@ from openedx.core.lib.courses import course_image_url
 %>
 
 <%inherit file="../main.html" />
-<%block name="headextra">
+<!-- <%block name="headextra">
   ## OG (Open Graph) title and description added below to give social media info to display
   ## (https://developers.facebook.com/docs/opengraph/howtos/maximizing-distribution-media-content#tags)
   <meta property="og:title" content="${course.display_name_with_default}" />
   <meta property="og:description" content="${get_course_about_section(request, course, 'short_description')}" />
-</%block>
+</%block> -->
 
 <%block name="js_extra">
   <script type="text/javascript">
@@ -60,6 +60,9 @@ from openedx.core.lib.courses import course_image_url
   <!-- Course profile header is updated inclusive of course heading and course image. -->
   <header class="course-profile">
     <div class="intro-inner-wrapper">
+      <div style="padding-left: 80px; color: #E6F3E6; font-weight: 400; font-size: 16px; letter-spacing: normal; padding-bottom: 48px;">
+        <span style="font-weight: 700; font-size: 16px; letter-spacing: 2%; padding-right: 16px;">Home</span> > <span style="font-weight: 700; font-size: 16px; letter-spacing: 2%; padding-left: 16px;">${course.display_name_with_default}</span>
+      </div>
       <div class="profile-top">
         % if get_course_about_section(request, course, "video"):
         <a href="#video-modal" class="media" rel="leanModal">
@@ -80,56 +83,56 @@ from openedx.core.lib.courses import course_image_url
           <h1>
             ${course.display_name_with_default}
           </h1>
-          <span class="org">${course.display_org_with_default}</span>
         </div>
+
+        <div class="main-cta">
+          %if user.is_authenticated and registered:
+            %if show_courseware_link:
+              <a href="${course_target}">
+            %endif
+  
+            <span class="register disabled">${_("Already Enrolled")}</span>
+  
+            %if show_courseware_link:
+              <strong>${_("View Course")}</strong>
+              </a>
+            %endif
+  
+          % elif is_course_full:
+            <span class="register disabled">
+              ${_("Course is full")}
+            </span>
+          % elif invitation_only and not can_enroll:
+            <span class="register disabled">${_("Enrollment in this course is by invitation only")}</span>
+          ## Shib courses need the enrollment button to be displayed even when can_enroll is False,
+          ## because AnonymousUsers cause can_enroll for shib courses to be False, but we need them to be able to click
+          ## so that they can register and become a real user that can enroll.
+          % elif not is_shib_course and not can_enroll:
+          <span class="register closed disabled"><i class="fa fa-lock" aria-hidden="true"></i> ${_("Enrollment is Closed")}</span>
+          %elif allow_anonymous:
+            %if show_courseware_link:
+              <a href="${course_target}">
+              <strong>${_("View Course")}</strong>
+              </a>
+            %endif
+          %else:
+            <%
+              if ecommerce_checkout:
+                reg_href = ecommerce_checkout_link
+              else:
+                reg_href="#"
+              if single_paid_mode:
+                href_class = "add-to-cart"
+              else:
+                href_class = "register"
+            %>
+            <a href="${reg_href}" class="${href_class}">
+              ${_("Enroll Now")}
+            </a>
+            <div id="register_error"></div>
+          %endif
+          </div>
       </div>
-      <div class="main-cta">
-        %if user.is_authenticated and registered:
-          %if show_courseware_link:
-            <a href="${course_target}">
-          %endif
-
-          <span class="register disabled">${_("Already Enrolled")}</span>
-
-          %if show_courseware_link:
-            <strong>${_("View Course")}</strong>
-            </a>
-          %endif
-
-        % elif is_course_full:
-          <span class="register disabled">
-            ${_("Course is full")}
-          </span>
-        % elif invitation_only and not can_enroll:
-          <span class="register disabled">${_("Enrollment in this course is by invitation only")}</span>
-        ## Shib courses need the enrollment button to be displayed even when can_enroll is False,
-        ## because AnonymousUsers cause can_enroll for shib courses to be False, but we need them to be able to click
-        ## so that they can register and become a real user that can enroll.
-        % elif not is_shib_course and not can_enroll:
-        <span class="register closed disabled"><i class="fa fa-lock" aria-hidden="true"></i> ${_("Enrollment is Closed")}</span>
-        %elif allow_anonymous:
-          %if show_courseware_link:
-            <a href="${course_target}">
-            <strong>${_("View Course")}</strong>
-            </a>
-          %endif
-        %else:
-          <%
-            if ecommerce_checkout:
-              reg_href = ecommerce_checkout_link
-            else:
-              reg_href="#"
-            if single_paid_mode:
-              href_class = "add-to-cart"
-            else:
-              href_class = "register"
-          %>
-          <a href="${reg_href}" class="${href_class}">
-            ${_("Enroll Now")}
-          </a>
-          <div id="register_error"></div>
-        %endif
-        </div>
       </div>
   </header>
   </%block>
@@ -152,7 +155,7 @@ from openedx.core.lib.courses import course_image_url
 
     <!-- NEW IN INDIGO sidebar is improved with better icons -->
 
-    <div class="course-sidebar">
+    <!-- <div class="course-sidebar">
       <div class="course-summary">
         <h2>Course Summary</h2>
         <%block name="course_about_important_dates">
@@ -264,7 +267,7 @@ from openedx.core.lib.courses import course_image_url
           ${get_course_about_section(request, course, "about_sidebar_html")}
         </section>
       % endif
-    %endif
+    %endif -->
   </div>
 
   </div>
