@@ -88,14 +88,14 @@
                             img{
                                 object-fit: cover;
                                 object-position: center;
-                                height: 100%;
+                                // height: 100% !important;
                             }
                         }
                     }
                     .course-info {
                         height: auto;
                         font-family: $font-family-title;
-                        padding: 20px 20px;
+                        padding: 0px 20px 50px 20px;
                         .course-code {
                             display: none;
                         }
@@ -111,7 +111,6 @@
                             padding: 0;
                             margin: 0 0 5px;
                             white-space: unset;
-                            overflow: hidden !important;
                             text-overflow: ellipsis;
                             display: -webkit-box !important;
                             -webkit-line-clamp: 2;
