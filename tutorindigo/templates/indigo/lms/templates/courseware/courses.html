@@ -35,13 +35,17 @@
 <%block name="pagetitle">${_("Courses")}</%block>
 
 <main id="main" aria-label="Content" tabindex="-1">
+  <section class="home style-logout">
+    <header>
+        <div class="heading-group">
+            <%include file="../index_overlay.html" />
+        </div>
+    </header>
+    </section>
+
     <section class="find-courses">
       <section class="courses-container">
-        <!-- NEW IN INDIGO Heading was added. -->
-        <div class="course-heading-area">
-          <h2>Unlock Your Potential: Discover New Courses Today ok edited edited edited!</h2>
-          <p>Explore a world of knowledge and enhance your skills with our diverse range of courses edited</p>
-        </div>
+
         <!-- NEW IN INDIGO Modified search bar and filters. -->
         % if course_discovery_enabled:
           <div class="saerch-bar-discover">

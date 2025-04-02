@@ -12,7 +12,27 @@
     }
     header.course-profile {
         overflow: visible;
-        background: #228B22;
+        background: linear-gradient(
+            to bottom,
+            #228B22,
+            #228D2B,
+            #229033,
+            #22923C,
+            #229544,
+            #21974D,
+            #219A55,
+            #219C5E,
+            #219E66,
+            #21A16F,
+            #21A377,
+            #21A680,
+            #21A880,
+            #20A880,
+            #20AD90,
+            #20AD99,
+            #20B0A1,
+            #20B2AA
+          );
         padding-left: 0 !important;
         .intro-inner-wrapper {
             background: none;
@@ -75,7 +95,7 @@
             }
             .hero {
                 position: relative;
-                overflow: visible;
+                overflow: hidden;
                 border: none;
                 &:after {
                     position: absolute;
@@ -155,6 +175,8 @@
         flex-wrap: wrap;
         @include media-breakpoint-up(md) {
             display: block;
+            max-width: 800px;
+            margin: 36px 50px 0;
         }
         &:after {
             display: block;
