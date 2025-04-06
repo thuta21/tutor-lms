@@ -83,6 +83,11 @@ from openedx.core.lib.courses import course_image_url
           <h1>
             ${course.display_name_with_default}
           </h1>
+
+          <div class="short-description">
+            ${get_course_about_section(request, course, 'short_description')}
+          </div>
+
         </div>
 
         <div class="main-cta">
@@ -103,7 +108,7 @@ from openedx.core.lib.courses import course_image_url
               ${_("Course is full")}
             </span>
           % elif invitation_only and not can_enroll:
-            <span class="register disabled">${_("Enrollment in this course is by invitation only")}</span>
+            <span class="register disabled">${_("Contact us to enroll")}</span>
           ## Shib courses need the enrollment button to be displayed even when can_enroll is False,
           ## because AnonymousUsers cause can_enroll for shib courses to be False, but we need them to be able to click
           ## so that they can register and become a real user that can enroll.
