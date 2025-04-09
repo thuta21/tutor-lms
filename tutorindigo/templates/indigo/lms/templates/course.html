@@ -61,6 +61,22 @@ from django.urls import reverse
     </div> -->
 </article>
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+  $.ajax({
+  url: 'https://jsonplaceholder.typicode.com/todos/1',
+  type: 'GET',
+  dataType: 'json',
+  success: function(data) {
+    console.log('To-Do Item:', data);
+  },
+  error: function(xhr, status, error) {
+    console.error('Failed to fetch to-do item:', error);
+  }
+});
+</script>
+
 <%static:require_module_async module_name="js/dateutil_factory" class_name="DateUtilFactory">
     DateUtilFactory.transform(iterationKey=".localized_datetime");
 </%static:require_module_async>
