@@ -203,3 +203,47 @@ header.global-header {
   justify-content: space-between;
   align-items: center;
 }
+
+
+/* Navigation container */
+.main-navigation {
+  position: relative;
+  background-color: #fff;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.nav-tabs {
+  display: flex;
+  align-items: center;
+  height: 50px;
+}
+
+/* Navigation links */
+.nav-link {
+  padding: 0 20px;
+  font-size: 18px;
+  color: #4a7ebd; /* Blue color for "My Learning" */
+  text-decoration: none; /* Remove underline */
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+/* Explicit styling for Explore tab */
+.nav-link.explore {
+  color: #228B22; /* Forest green for "Explore" */
+  font-weight: 500;
+  border-bottom: 3px solid #228B22;
+}
+
+/* Explicit styling for My Learning tab */
+.nav-link.my-learning {
+  color: #228B22; /* Forest green for "Explore" */
+  font-weight: 500;
+}

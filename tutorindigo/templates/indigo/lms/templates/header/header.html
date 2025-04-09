@@ -82,7 +82,18 @@ from openedx.core.djangoapps.site_configuration import helpers as configuration_
         % endif
     </div>
     </div>
+    <!-- Navigation Tabs for Explore and My Learning -->
+    <div class="main-navigation">
+        <div class="nav-container">
+            <div class="nav-tabs">
+                <a href="/explore" style="text-decoration: none;" class="nav-link explore active">Explore</a>
+                <a href="/my-learning" style="text-decoration: none;" class="nav-link my-learning">My Learning</a>
+            </div>
+        </div>
+    </div>
 </header>
+
+
 
 % if course:
 <!--[if lte IE 9]>
