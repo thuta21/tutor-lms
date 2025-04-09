@@ -12,27 +12,26 @@
     }
     header.course-profile {
         overflow: visible;
-        background: linear-gradient(
-            to bottom,
-            #228B22,
-            #228D2B,
-            #229033,
-            #22923C,
-            #229544,
-            #21974D,
-            #219A55,
-            #219C5E,
-            #219E66,
-            #21A16F,
-            #21A377,
-            #21A680,
-            #21A880,
-            #20A880,
-            #20AD90,
-            #20AD99,
-            #20B0A1,
-            #20B2AA
-          );
+        background: linear-gradient(90deg, 
+            #228B22 0%,
+            #228D2B 5.88%,
+            #229033 11.76%,
+            #22923C 17.64%,
+            #229544 23.52%,
+            #21974D 29.4%,
+            #219A55 35.28%,
+            #219C5E 41.16%,
+            #219E66 47.04%,
+            #21A16F 52.92%,
+            #21A377 58.8%,
+            #21A680 64.68%,
+            #21A888 70.56%,
+            #20AB90 82.32%,
+            #20AD99 88.2%,
+            #20B0A1 94.08%,
+            #20B2AA 100%
+        );
+
         padding-left: 0 !important;
         .intro-inner-wrapper {
             background: none;

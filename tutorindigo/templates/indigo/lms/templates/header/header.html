@@ -83,6 +83,7 @@ from openedx.core.djangoapps.site_configuration import helpers as configuration_
     </div>
     </div>
     <!-- Navigation Tabs for Explore and My Learning -->
+    % if user.is_authenticated:
     <div class="main-navigation">
         <div class="nav-container">
             <div class="nav-tabs">
@@ -91,6 +92,7 @@ from openedx.core.djangoapps.site_configuration import helpers as configuration_
             </div>
         </div>
     </div>
+    % endif
 </header>
 
 

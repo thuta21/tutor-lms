@@ -27,7 +27,7 @@ from openedx.core.djangoapps.site_configuration import helpers as configuration_
 %>
 
 <div class="nav-links">
-  <div class="main">
+  <!-- <div class="main">
     % if show_dashboard_tabs:
       <div class="mobile-nav-item hidden-mobile nav-item nav-tab">
         <a class="${'active ' if reverse('dashboard') == request.path else ''}tab-nav-link" href="${reverse('dashboard')}"
@@ -52,9 +52,8 @@ from openedx.core.djangoapps.site_configuration import helpers as configuration_
           </a>
       </div>
     % endif
-  </div>
+  </div> -->
   <div class="secondary d-flex align-items-center">
-    <%include file="./theme-toggle-button.html" />
     <%include file="user_dropdown.html"/>
   </div>
 </div>
