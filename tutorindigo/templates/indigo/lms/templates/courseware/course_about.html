@@ -20,6 +20,204 @@ from openedx.core.lib.courses import course_image_url
   <meta property="og:description" content="${get_course_about_section(request, course, 'short_description')}" />
 </%block> -->
 
+<%block name="js_collapsible">
+  <script type="text/javascript">
+  function buildApiUrl(courseId) {
+    if (!courseId) {
+      console.error("Course ID is undefined");
+      return "";
+    }
+    return "http://local.openedx.io:8000/api/courses/v2/blocks/?course_id=" + courseId + 
+      "&all_blocks=true&depth=all&block_types_filter=chapter,sequential&fields=display_name,descendants&nav_depth=3";
+  }
+
+  const accessToken = 'iz52Y568uOFURP73WCZmDq9lLvMYczdvljCzIu2Za7W2g1vQck7Qvw2saS6YKKRr';
+  const encodedCourseId = encodeURIComponent("${course.id | n, js_escaped_string}");
+  const apiURL = buildApiUrl(encodedCourseId);
+
+  function buildHierarchyFromDescendants(data) {
+    const blocks = data.blocks;
+    const result = [];
+    for (const [id, block] of Object.entries(blocks)) {
+      if (block.type === "chapter") {
+        const subsections = [];
+        (block.descendants || []).forEach(descId => {
+          const childBlock = blocks[descId];
+          if (childBlock && childBlock.type === "sequential") {
+            subsections.push({
+              display_name: childBlock.display_name
+            });
+          }
+        });
+        result.push({
+          section: {
+            display_name: block.display_name,
+            subsection: subsections
+          }
+        });
+      }
+    }
+    return result;
+  }
+
+  $.ajax({
+    url: apiURL,
+    type: 'GET',
+    dataType: 'json',
+    headers: {
+      "Authorization": "Bearer " + accessToken
+    },
+    success: function(data) {
+      const structured = buildHierarchyFromDescendants(data);
+      renderCourseStructure(structured)
+    },
+    error: function(xhr, status, error) {
+      console.error('Failed to fetch course structure:', error);
+    }
+  });
+
+    function renderCourseStructure(courseData) {
+      const container = document.getElementById('course-container');
+      const statusContainer = document.getElementById('course-status-container');
+      const statusTopContainer = document.getElementById('course-status-top-container');
+      container.innerHTML = ''; // Clear any existing content
+
+      let topicsCount = courseData.length;
+      let materialsCount = 0;
+
+      // Count total materials (subsections)
+      courseData.forEach(item => {
+        const subsections = item.section.subsection || [];
+        materialsCount += subsections.length;
+      });
+
+      // Create and populate the course statistics bar using string concatenation
+      statusContainer.innerHTML = 
+        '<div class="course-stats-bar">' +
+          '<span>' + topicsCount + ' topics</span>' +
+          '<span class="stats-dot">•</span>' +
+          '<span>' + materialsCount + ' course materials</span>' +
+        '</div>';
+
+      statusTopContainer.innerHTML = 
+        '<div class="info-container">' +
+            '<div class="info-box">'+
+              '<span class="icon">📖</span>' +
+              '<span>' + topicsCount + ' topics</span>' +
+            '</div>'+
+            '<div class="info-box">'+
+              '<span class="icon">📋</span>' +
+              '<span>' + materialsCount + ' lectures</span>' +
+            '</div>'
+          '</div>';
+      
+      // Loop through each section in the course data
+      courseData.forEach((item, index) => {
+          const section = item.section;
+          const sectionName = section.display_name;
+          const subsections = section.subsection || [];
+          
+          // Create accordion element
+          const accordion = document.createElement('div');
+          accordion.className = 'accordion';
+          if (index === 0) accordion.classList.add('active');
+
+          // Create header
+          const header = document.createElement('div');
+          header.className = 'accordion-header';
+
+          const headerLeft = document.createElement('div');
+          headerLeft.className = 'accordion-header-left';
+
+          const arrowIcon = document.createElement('div');
+          arrowIcon.className = 'icon arrow';
+          arrowIcon.innerHTML = `
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="18 15 12 9 6 15"></polyline>
+              </svg>
+          `;
+
+          const title = document.createElement('h2');
+          title.textContent = sectionName;
+
+          headerLeft.appendChild(arrowIcon);
+          headerLeft.appendChild(title);
+
+          const headerRight = document.createElement('div');
+          headerRight.className = 'accordion-header-right';
+          headerRight.innerHTML = subsections.length + " lectures"
+
+          header.appendChild(headerLeft);
+          header.appendChild(headerRight);
+
+          // Create content
+          const content = document.createElement('div');
+          content.className = 'accordion-content';
+        
+                  // Add subsections
+        subsections.forEach(subsection => {
+            const item = document.createElement('div');
+            item.className = 'accordion-item';
+            
+            const itemLeft = document.createElement('div');
+            itemLeft.className = 'accordion-item-left';
+            
+            const icon = document.createElement('div');
+            icon.className = 'icon';
+            icon.innerHTML = `
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"></rect>
+                    <line x1="10" y1="15" x2="10" y2="9"></line>
+                    <line x1="14" y1="15" x2="14" y2="9"></line>
+                </svg>
+            `;
+            
+            const titleDiv = document.createElement('div');
+            const titleText = document.createElement('div');
+            titleText.className = 'accordion-item-title';
+            titleText.textContent = subsection.display_name;
+            
+            titleDiv.appendChild(titleText);
+            
+            itemLeft.appendChild(icon);
+            itemLeft.appendChild(titleDiv);
+            
+            const lockIcon = document.createElement('div');
+            lockIcon.className = 'icon lock-icon';
+            lockIcon.innerHTML = `
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                    <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                </svg>
+            `;
+            
+            item.appendChild(itemLeft);
+            item.appendChild(lockIcon);
+            
+            content.appendChild(item);
+        });
+        
+        // Assemble accordion
+        accordion.appendChild(header);
+        accordion.appendChild(content);
+        
+        // Add to container
+        container.appendChild(accordion);
+      });
+
+      // Add event listeners to the newly created accordions
+    const accordions = document.querySelectorAll('.accordion');
+    accordions.forEach(accordion => {
+        const header = accordion.querySelector('.accordion-header');
+        header.addEventListener('click', () => {
+            accordion.classList.toggle('active');
+        });
+    });
+
+    }
+  </script>
+</%block>
+
 <%block name="js_extra">
   <script type="text/javascript">
   (function() {
@@ -83,6 +281,8 @@ from openedx.core.lib.courses import course_image_url
           <h1>
             ${course.display_name_with_default}
           </h1>
+
+          <div id="course-status-top-container"></div>
 
           <div class="short-description">
             ${get_course_about_section(request, course, 'short_description')}
@@ -155,6 +355,17 @@ from openedx.core.lib.courses import course_image_url
 
   </div>
 </div>
+
+  <!-- Course Outline Section -->
+  <div class="course-outline-container">
+    <h2 class="course-outline-title">Course outline overview</h2>
+    <div id="course-status-container"></div>
+    <div id="course-container">
+      <!-- Course structure will be dynamically inserted here -->
+      <div class="loading-indicator">Loading course structure...</div>
+    </div>
+  </div>
+
 
 ## Need to put this hidden form on the page so that the registration button works.
 ## Since it's no harm to display a hidden form, we display it with the most permissive conditional

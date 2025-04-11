@@ -158,9 +158,11 @@ header.global-header {
         width: 100%;
         background: none;
         outline: none;
-        font-size: 14px;
+        font-size: 20px;
         line-height: 20px;
         padding: 9px 10px;
+        font-family: $font-family-lato;
+        font-weight: 400;
       }
     }
   }
