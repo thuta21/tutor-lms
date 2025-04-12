@@ -1,3 +1,0 @@
-FEATURES['ENABLE_CORS_HEADERS'] = True
-CORS_ORIGIN_ALLOW_ALL = True  # For development purposes
-CORS_ALLOW_CREDENTIALS = True
