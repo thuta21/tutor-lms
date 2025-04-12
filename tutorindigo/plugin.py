@@ -182,19 +182,6 @@ MFE_CONFIG['INDIGO_ENABLE_DARK_TOGGLE'] = {{ INDIGO_ENABLE_DARK_TOGGLE }}
     ]
 )
 
-hooks.Filters.ENV_PATCHES.add_item(
-    (
-        "openedx-lms-common-settings",
-        """
-CACHES = {
-    'default': {
-        'BACKEND': 'django.core.cache.backends.dummy.DummyCache',
-    }
-}
-""",
-    )
-)
-
 # Apply patches from tutor-indigo
 for path in glob(
     os.path.join(
