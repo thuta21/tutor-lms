@@ -1,8 +1,7 @@
 // Include custom home
 section.home {
-  max-width: 1600px;
-  margin: 0 auto;
-  padding: 0 65px;
+  max-width: 100%;
+  padding: 0 15px;
 }
 
 .home > header .title {
@@ -90,3 +89,148 @@ section.home {
     }
   }
 }
+
+// --- Custom Course List Styles ---
+.custom-course-list-container {
+  padding: 40px 0; // Add some padding around the list
+  width: 100%; // Take full width
+}
+
+.custom-courses {
+  list-style: none;
+  padding: 0;
+  margin: 0; // Remove negative margins
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%; // Ensure full width
+
+  li {
+    padding: 0 8px; // Smaller padding for less space between cards
+    margin-bottom: 16px;
+    width: 25%; // Exactly 4 per row at all larger sizes
+    box-sizing: border-box; // Include padding in width calculation
+
+    @include media-breakpoint-down(md) {
+       width: 50%; // Two columns on smaller screens
+    }
+    @include media-breakpoint-down(sm) {
+       width: 100%; // One column on mobile
+    }
+
+    .course {
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      height: 100%; // Make cards equal height
+      transition: transform 0.2s, box-shadow 0.2s; // Smooth hover effect
+
+      &:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);
+      }
+
+      .course-image {
+        position: relative;
+        width: 100%;
+        height: 0;
+        padding-bottom: 65%; // Slightly shorter aspect ratio
+        overflow: hidden;
+        background-color: #f1f5f9;
+
+        img {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          object-position: center;
+          transition: transform 0.3s;
+        }
+
+        &:hover img {
+          transform: scale(1.05);
+        }
+      }
+
+      .course-info {
+        padding: 16px 16px 30px;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+
+        .course-number-org-group {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          font-size: 16px;
+          color: #6E726E;
+          margin-bottom: 8px;
+          line-height: 1.2;
+          font-family: $font-family-lato
+
+          .course-number {
+            font-weight: 500;
+            font-family: $font-family-lato
+          }
+
+          .course-org {
+            font-weight: 500;
+            text-align: right;
+            font-family: $font-family-lato
+          }
+        }
+
+        .course-title {
+          font-size: 20px;
+          font-weight: 700;
+          color: #272D27;
+          margin: 0;
+          line-height: 1.4;
+          display: -webkit-box;
+          -webkit-line-clamp: 2;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          font-family: $font-family-lato
+        }
+      }
+    }
+  }
+}
+
+// Add an additional topic info line similar to the screenshot
+.custom-courses li .course .course-info::after {
+  display: block;
+  font-size: 14px;
+  color: #6c757d;
+  margin-top: 12px;
+}
+
+// Responsive adjustments
+@media (max-width: 991px) { // Medium screens and below
+  .custom-courses li {
+    padding: 0 8px;
+    .course-title {
+      font-size: 15px;
+    }
+  }
+}
+
+@media (max-width: 576px) { // Small screens
+  .custom-course-list-container {
+    padding: 20px 0;
+  }
+
+  .custom-courses li {
+    margin-bottom: 15px;
+
+    .course .course-info {
+      padding: 12px;
+    }
+  }
+}
+// --- End Custom Course List Styles ---

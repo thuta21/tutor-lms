@@ -416,3 +416,52 @@
         }
     }
 }
+
+.organization-filters {
+    margin: 30px 0;
+}
+
+.filters-heading {
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: #000;
+}
+
+.filters-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.filter-button {
+    background: #fff;
+    border: 1px solid #D1D5DB;
+    border-radius: 50px;
+    padding: 10px 20px;
+    font-size: 20px;
+    color: #6B7280;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: $font-family-lato;
+    font-weight: 400;
+    box-shadow: none;
+    text-shadow: none;
+}
+
+button.filter-button:hover {
+    background: #16a34a;
+    color: white;
+    border-color: #16a34a;
+}
+
+.filter-button.active {
+    background: #16a34a;
+    color: white;
+    border-color: #16a34a;
+    box-shadow: none;
+    text-shadow: none;
+    font-size: 20px;
+    font-family: $font-family-lato;
+}
