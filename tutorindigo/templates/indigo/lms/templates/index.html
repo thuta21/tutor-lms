@@ -170,9 +170,11 @@ from openedx.core.djangolib.markup import HTML, Text
               const courseInfoDiv = document.createElement('div');
               courseInfoDiv.className = 'course-info';
 
+              // Create the course number and org group
               const numberOrgGroup = document.createElement('div');
               numberOrgGroup.className = 'course-number-org-group';
 
+              // Create spans for number and org
               const numberSpan = document.createElement('span');
               numberSpan.className = 'course-number';
               numberSpan.textContent = course.number || '';
@@ -183,12 +185,19 @@ from openedx.core.djangolib.markup import HTML, Text
               orgSpan.textContent = course.org || '';
               numberOrgGroup.appendChild(orgSpan);
 
+              // Add the number-org group to course info
               courseInfoDiv.appendChild(numberOrgGroup);
+
+              // Create and add the title
+              const titleLink = document.createElement('a');
+              titleLink.href = '/courses/' + course.id + '/about';
 
               const titleH3 = document.createElement('h3');
               titleH3.className = 'course-title';
               titleH3.textContent = course.name || 'Untitled Course';
-              courseInfoDiv.appendChild(titleH3);
+
+              titleLink.appendChild(titleH3);
+              courseInfoDiv.appendChild(titleLink);
 
               courseArticle.appendChild(courseInfoDiv);
 

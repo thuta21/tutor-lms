@@ -1,7 +1,11 @@
 // Include custom home
 section.home {
   max-width: 100%;
-  padding: 0 15px;
+  padding: 0 80px;
+
+  @media (max-width: 768px) {
+    padding: 0 28px;
+  }
 }
 
 .home > header .title {
@@ -67,7 +71,8 @@ section.home {
         @include media-breakpoint-down(sm) {
           font-size: 36px;
           font-weight: 800;
-          margin: 0 0 12px;
+          line-height: normal;
+          margin: 30px 0 12px;
         }
       }
 
@@ -105,7 +110,7 @@ section.home {
   width: 100%; // Ensure full width
 
   li {
-    padding: 0 8px; // Smaller padding for less space between cards
+    padding: 0 12px; // Smaller padding for less space between cards
     margin-bottom: 16px;
     width: 25%; // Exactly 4 per row at all larger sizes
     box-sizing: border-box; // Include padding in width calculation
@@ -170,17 +175,17 @@ section.home {
           color: #6E726E;
           margin-bottom: 8px;
           line-height: 1.2;
-          font-family: $font-family-lato
+          font-family: $font-family-lato;
 
           .course-number {
             font-weight: 500;
-            font-family: $font-family-lato
+            font-family: $font-family-lato;
           }
 
           .course-org {
             font-weight: 500;
             text-align: right;
-            font-family: $font-family-lato
+            font-family: $font-family-lato;
           }
         }
 
@@ -195,7 +200,7 @@ section.home {
           -webkit-box-orient: vertical;
           overflow: hidden;
           text-overflow: ellipsis;
-          font-family: $font-family-lato
+          font-family: $font-family-lato;
         }
       }
     }
@@ -215,9 +220,20 @@ section.home {
   .custom-courses li {
     padding: 0 8px;
     .course-title {
-      font-size: 15px;
+      font-size: 20px;
     }
   }
+}
+
+.course-information {
+  padding: 15px 15px 30px;
+}
+
+.course-info-title {
+  font-family: $font-family-lato;
+  font-size: 20px;
+  color: #272D27;
+  font-weight: 700;
 }
 
 @media (max-width: 576px) { // Small screens

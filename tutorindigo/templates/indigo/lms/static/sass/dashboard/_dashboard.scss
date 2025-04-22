@@ -293,6 +293,17 @@
                         -webkit-line-clamp: 2;
                         -webkit-box-orient: vertical;
                     }
+                    a {
+                        text-decoration: none;
+                        color: inherit;
+                        display: block;
+                        &:hover {
+                            text-decoration: none;
+                            .course-title {
+                                color: $primary;
+                            }
+                        }
+                    }
                     .info-university {
                         color: #70787E;
                         font-size: 14px;
@@ -323,19 +334,51 @@
                         }
                     }
                     .course-info {
-                        border-top: 1px solid #ECF0F4;
-                        padding: 10px 20px;
-                        margin: 0 -20px;
-                        color: #515661;
-                        font-size: 14px;
-                        line-height: 20px;
-                        svg {
-                            display: inline-block;
-                            margin: -4px 10px 0 0;
-                            vertical-align: middle;
+                        padding: 15px;
+                        background: #fff;
+                        border-radius: 0 0 8px 8px;
+
+                        .course-number-org-group {
+                            margin-bottom: 10px;
+                            font-size: 14px;
+                            color: #6B7280;
+
+                            .course-number {
+                                margin-right: 8px;
+                            }
+
+                            .course-org {
+                                font-weight: 500;
+                            }
                         }
-                        .info-date-block-container {
-                            display: inline;
+
+                        a {
+                            text-decoration: none;
+                            color: inherit;
+                            display: block;
+
+                            &:hover {
+                                text-decoration: none;
+                                .course-title {
+                                    color: $primary;
+                                }
+                            }
+                        }
+
+                        .course-title {
+                            color: #292C2E;
+                            font-size: 16px;
+                            line-height: 22px;
+                            height: auto;
+                            padding: 0;
+                            margin: 0 0 5px;
+                            white-space: unset;
+                            overflow: hidden !important;
+                            text-overflow: ellipsis;
+                            display: -webkit-box !important;
+                            -webkit-line-clamp: 2;
+                            -webkit-box-orient: vertical;
+                            transition: color 0.2s ease;
                         }
                     }
                 }

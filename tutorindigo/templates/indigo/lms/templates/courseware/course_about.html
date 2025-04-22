@@ -27,7 +27,7 @@ from openedx.core.lib.courses import course_image_url
       console.error("Course ID is undefined");
       return "";
     }
-    return "http://local.openedx.io:8000/api/courses/v2/blocks/?course_id=" + courseId + 
+    return "http://local.openedx.io:8000/api/courses/v2/blocks/?course_id=" + courseId +
       "&all_blocks=true&depth=all&block_types_filter=chapter,sequential&fields=display_name,descendants&nav_depth=3";
   }
 
@@ -92,31 +92,42 @@ from openedx.core.lib.courses import course_image_url
       });
 
       // Create and populate the course statistics bar using string concatenation
-      statusContainer.innerHTML = 
+      statusContainer.innerHTML =
         '<div class="course-stats-bar">' +
           '<span>' + topicsCount + ' topics</span>' +
           '<span class="stats-dot">•</span>' +
           '<span>' + materialsCount + ' course materials</span>' +
         '</div>';
 
-      statusTopContainer.innerHTML = 
+      statusTopContainer.innerHTML =
         '<div class="info-container">' +
             '<div class="info-box">'+
-              '<span class="icon">📖</span>' +
+              '<span class="icon">' +
+                '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">' +
+                  '<path d="M19 3H5C3.89543 3 3 3.89543 3 5V19C3 20.1046 3.89543 21 5 21H19C20.1046 21 21 20.1046 21 19V5C21 3.89543 20.1046 3 19 3Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>' +
+                  '<path d="M7 7H17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>' +
+                  '<path d="M7 12H17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>' +
+                  '<path d="M7 17H13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>' +
+                '</svg>' +
+              '</span>' +
               '<span>' + topicsCount + ' topics</span>' +
             '</div>'+
             '<div class="info-box">'+
-              '<span class="icon">📋</span>' +
+              '<span class="icon">' +
+                '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">' +
+                  '<path d="M12 6.042C10.3516 4.56336 8.2144 3.74694 6 3.75C4.948 3.75 3.938 3.93 3 4.262V18.512C3.96362 18.172 4.97816 17.9989 6 18C8.305 18 10.408 18.867 12 20.292M12 6.042C13.6483 4.56328 15.7856 3.74685 18 3.75C19.052 3.75 20.062 3.93 21 4.262V18.512C20.0364 18.172 19.0218 17.9989 18 18C15.7856 17.9969 13.6484 18.8134 12 20.292M12 6.042V20.292" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>' +
+                '</svg>' +
+              '</span>' +
               '<span>' + materialsCount + ' lectures</span>' +
             '</div>'
           '</div>';
-      
+
       // Loop through each section in the course data
       courseData.forEach((item, index) => {
           const section = item.section;
           const sectionName = section.display_name;
           const subsections = section.subsection || [];
-          
+
           // Create accordion element
           const accordion = document.createElement('div');
           accordion.className = 'accordion';
@@ -153,15 +164,15 @@ from openedx.core.lib.courses import course_image_url
           // Create content
           const content = document.createElement('div');
           content.className = 'accordion-content';
-        
+
                   // Add subsections
         subsections.forEach(subsection => {
             const item = document.createElement('div');
             item.className = 'accordion-item';
-            
+
             const itemLeft = document.createElement('div');
             itemLeft.className = 'accordion-item-left';
-            
+
             const icon = document.createElement('div');
             icon.className = 'icon';
             icon.innerHTML = `
@@ -171,17 +182,17 @@ from openedx.core.lib.courses import course_image_url
                     <line x1="14" y1="15" x2="14" y2="9"></line>
                 </svg>
             `;
-            
+
             const titleDiv = document.createElement('div');
             const titleText = document.createElement('div');
             titleText.className = 'accordion-item-title';
             titleText.textContent = subsection.display_name;
-            
+
             titleDiv.appendChild(titleText);
-            
+
             itemLeft.appendChild(icon);
             itemLeft.appendChild(titleDiv);
-            
+
             const lockIcon = document.createElement('div');
             lockIcon.className = 'icon lock-icon';
             lockIcon.innerHTML = `
@@ -190,17 +201,17 @@ from openedx.core.lib.courses import course_image_url
                     <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
                 </svg>
             `;
-            
+
             item.appendChild(itemLeft);
             item.appendChild(lockIcon);
-            
+
             content.appendChild(item);
         });
-        
+
         // Assemble accordion
         accordion.appendChild(header);
         accordion.appendChild(content);
-        
+
         // Add to container
         container.appendChild(accordion);
       });
@@ -258,8 +269,8 @@ from openedx.core.lib.courses import course_image_url
   <!-- Course profile header is updated inclusive of course heading and course image. -->
   <header class="course-profile">
     <div class="intro-inner-wrapper">
-      <div style="padding-left: 80px; color: #E6F3E6; font-weight: 400; font-size: 16px; letter-spacing: normal; padding-bottom: 48px;">
-        <span style="font-weight: 400; font-size: 16px; letter-spacing: 2%; padding-right: 16px; font-family: $font-family-lato;">Home</span> <span>&rsaquo;</span> <span style="font-weight: 700; font-size: 16px; letter-spacing: 2%; padding-left: 16px; font-family: $font-family-lato;">${course.display_name_with_default}</span>
+      <div class="intro-inner-wrapper-navigation">
+        <span class="intro-inner-wrapper-navigation-home">Home</span> <span>&rsaquo;</span> <span class="intro-inner-wrapper-navigation-current">${course.display_name_with_default}</span>
       </div>
       <div class="profile-top">
         % if get_course_about_section(request, course, "video"):
@@ -282,11 +293,11 @@ from openedx.core.lib.courses import course_image_url
             ${course.display_name_with_default}
           </h1>
 
-          <div id="course-status-top-container"></div>
-
           <div class="short-description">
             ${get_course_about_section(request, course, 'short_description')}
           </div>
+
+          <div id="course-status-top-container"></div>
 
         </div>
 
@@ -295,13 +306,13 @@ from openedx.core.lib.courses import course_image_url
             %if show_courseware_link:
               <a href="${course_target}">
             %endif
-    
+
             %if show_courseware_link:
               <strong>${_("View Course")}</strong>
                 <p class="course-already-enrolled">You have already enrolled</p>
               </a>
             %endif
-  
+
           % elif is_course_full:
             <span class="register disabled">
               ${_("Course is full")}
