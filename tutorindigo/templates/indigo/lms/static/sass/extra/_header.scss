@@ -234,7 +234,7 @@ header.global-header {
 
   // Mobile styles
   @media (max-width: 768px) {
-    padding: 0 20px;
+    padding: 30px 30px;
     min-height: 70px;
     width: 100%;
   }
@@ -270,7 +270,7 @@ header.global-header {
     }
 
     .nav-tabs {
-      justify-content: center;
+      justify-content: left;
     }
   }
 }
@@ -327,12 +327,24 @@ header.global-header {
   border-bottom: 3px solid #228B22;
   font-size: 20px;
   font-family: $font-family-lato;
+
+  @media (max-width: 768px) {
+    font-size: 16px;
+    font-weight: 700px;
+    font-family: $font-family-lato;
+  }
 }
 
 .nav-link.my-learning {
   color: #767A76;
   font-weight: 500;
   font-size: 20px;
+
+  @media (max-width: 768px) {
+    font-size: 16px;
+    font-weight: 700px;
+    font-family: $font-family-lato;
+  }
 }
 
 .toggle-user-dropdown {
@@ -362,4 +374,57 @@ header.global-header {
 
 .username {
   display: none;
+}
+
+/* Mobile user dropdown styles */
+.mobile-user-icon {
+  position: relative;
+}
+
+.mobile-avatar {
+  width: 32px !important;
+  height: 32px !important;
+  font-size: 16px !important;
+  margin-right: 0 !important;
+  cursor: pointer;
+}
+
+.mobile-user-dropdown {
+  position: absolute;
+  right: 0;
+  top: 50px;
+  width: 200px;
+  background-color: #fff;
+  border-radius: 6px;
+  box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.05), 0px 4px 6px -2px rgba(0, 0, 0, 0.05), 0px 10px 15px -3px rgba(0, 0, 0, 0.10);
+  z-index: 1000;
+  display: block;
+}
+
+.mobile-user-dropdown.hidden {
+  display: none;
+}
+
+.mobile-user-dropdown .dropdown-item {
+  padding: 0;
+}
+
+.mobile-user-dropdown .dropdown-item a {
+  display: block;
+  padding: 10px 15px;
+  font-size: 14px;
+  line-height: 20px;
+  color: #333;
+  text-decoration: none;
+}
+
+.mobile-user-dropdown .dropdown-item a:hover {
+  background-color: #f5f5f5;
+}
+
+@media (min-width: 769px) {
+  .mobile-user-icon,
+  .mobile-user-dropdown {
+    display: none !important;
+  }
 }
