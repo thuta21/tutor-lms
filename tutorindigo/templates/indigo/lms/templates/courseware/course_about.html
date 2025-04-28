@@ -27,11 +27,14 @@ from openedx.core.lib.courses import course_image_url
       console.error("Course ID is undefined");
       return "";
     }
-    return "http://local.openedx.io:8000/api/courses/v2/blocks/?course_id=" + courseId +
-      "&all_blocks=true&depth=all&block_types_filter=chapter,sequential&fields=display_name,descendants&nav_depth=3";
+
+    //return "http://local.openedx.io:8000/api/courses/v2/blocks/?course_id=" + courseId + "&all_blocks=true&depth=all&block_types_filter=chapter,sequential&fields=display_name,descendants&nav_depth=3"; local
+
+  return "https://openedx.burmapass.top/api/courses/v2/blocks/?course_id=" + courseId + "&all_blocks=true&depth=all&block_types_filter=chapter,sequential&fields=display_name,descendants&nav_depth=3";
   }
 
-  const accessToken = 'iz52Y568uOFURP73WCZmDq9lLvMYczdvljCzIu2Za7W2g1vQck7Qvw2saS6YKKRr';
+  //const accessToken = 'iz52Y568uOFURP73WCZmDq9lLvMYczdvljCzIu2Za7W2g1vQck7Qvw2saS6YKKRr'; local
+  const accessToken = '0571f00e0b302aabdbb45fdeef264714d3fb1d250677a8ebbe4d25921929d4e674cb751c6d8fa24ae4e21eceab0b4f6d2fbe52cfad5f17fbac120a0c076d5804';
   const encodedCourseId = encodeURIComponent("${course.id | n, js_escaped_string}");
   const apiURL = buildApiUrl(encodedCourseId);
 
