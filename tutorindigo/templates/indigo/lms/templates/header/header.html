@@ -92,42 +92,7 @@ from openedx.core.djangoapps.site_configuration import helpers as configuration_
                     <input type="text" placeholder="Search..." class="search-input" />
                 </div>
 
-                % if user.is_authenticated:
-                <!-- Mobile user dropdown -->
-                <div class="mobile-icon mobile-user-icon">
-                    <div class="user-avatar-circle mobile-avatar">
-                        ${user.username[0].upper()}
-                    </div>
-                </div>
 
-                <!-- User dropdown menu for mobile -->
-                <div class="mobile-user-dropdown hidden">
-                    % if not get_enterprise_learner_portal(request):
-                        <div class="dropdown-item"><a href="${reverse('dashboard')}">${_("Dashboard")}</a></div>
-                    % else:
-                        <div class="dropdown-item"><a href="${settings.ENTERPRISE_LEARNER_PORTAL_BASE_URL}/${get_enterprise_learner_portal(request).get('slug')}">${_("Dashboard")}</a></div>
-                    % endif
-                    <div class="dropdown-item"><a href="${reverse('learner_profile', kwargs={'username': user.username})}">${_("Profile")}</a></div>
-                    <div class="dropdown-item"><a href="${reverse('account_settings')}">${_("Account")}</a></div>
-                    % if should_redirect_to_order_history_microfrontend() and not get_enterprise_learner_portal(request):
-                        <div class="dropdown-item"><a href="${settings.ORDER_HISTORY_MICROFRONTEND_URL}">${_("Order History")}</a></div>
-                    % endif
-                    <div class="dropdown-item"><a href="${reverse('logout')}">${_("Sign Out")}</a></div>
-                </div>
-
-                % else:
-                <!-- User/account icon for mobile -->
-                <a href="/login${login_query()}" class="mobile-icon mobile-user-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                        <path fill-rule="evenodd" clip-rule="evenodd"
-                            d="M12 4C9.79086 4 8 5.79086 8 8C8 10.2091 9.79086 12 12 12C14.2091 12 16 10.2091 16 8C16 5.79086 14.2091 4 12 4ZM6 8C6 4.68629 8.68629 2 12 2C15.3137 2 18 4.68629 18 8C18 11.3137 15.3137 14 12 14C8.68629 14 6 11.3137 6 8Z"
-                            fill="#333333"></path>
-                        <path fill-rule="evenodd" clip-rule="evenodd"
-                            d="M12 16C8.13401 16 5 19.134 5 23C5 23.5523 4.55228 24 4 24C3.44772 24 3 23.5523 3 23C3 18.0294 7.02944 14 12 14C16.9706 14 21 18.0294 21 23C21 23.5523 20.5523 24 20 24C19.4477 24 19 23.5523 19 23C19 19.134 15.866 16 12 16Z"
-                            fill="#333333"></path>
-                    </svg>
-                </a>
-                % endif
             </div>
         </div>
         % if user.is_authenticated:
