@@ -77,10 +77,6 @@ header.global-header {
   }
 
   .nav-links {
-    @media (max-width: 768px) {
-      display: none;
-    }
-
     .secondary {
       margin: 0;
       position: relative;

@@ -1525,6 +1525,10 @@ body.indigo-dark-theme {
   } 
 
 }
+
+a:not(.btn), a:visited:not(.btn) {
+  color: #6E726E !important;
+}
 @import '../../../extra/footer';
 @import '../../../extra/header';
 @import '../../../dashboard/dashboard';
