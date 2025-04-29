@@ -62,17 +62,14 @@ from openedx.core.djangoapps.site_configuration import helpers as configuration_
         <%include file="navbar-logo-header.html" args="online_help_token=online_help_token"/>
             % if settings.FEATURES.get('ENABLE_COURSE_DISCOVERY'):
         <div class="course-search">
-            <form id="search-form" method="get" action="/courses">
-                    <label class="input-holder"><span class="sr">${_("Search for a course")}</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-                            <path fill-rule="evenodd" clip-rule="evenodd"
-                                d="M8 4C5.79086 4 4 5.79086 4 8C4 10.2091 5.79086 12 8 12C10.2091 12 12 10.2091 12 8C12 5.79086 10.2091 4 8 4ZM2 8C2 4.68629 4.68629 2 8 2C11.3137 2 14 4.68629 14 8C14 9.29583 13.5892 10.4957 12.8907 11.4765L17.7071 16.2929C18.0976 16.6834 18.0976 17.3166 17.7071 17.7071C17.3166 18.0976 16.6834 18.0976 16.2929 17.7071L11.4765 12.8907C10.4957 13.5892 9.29583 14 8 14C4.68629 14 2 11.3137 2 8Z"
-                                fill="#9CA3AF"></path>
-                        </svg>
-                        <input id="search-input" class="search-input" name="search_query" type="text"
-                        placeholder="${_("Search")}"/>
-                    </label>
-            </form>
+                <label class="input-holder"><span class="sr">${_("Search for a course")}</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                              d="M8 4C5.79086 4 4 5.79086 4 8C4 10.2091 5.79086 12 8 12C10.2091 12 12 10.2091 12 8C12 5.79086 10.2091 4 8 4ZM2 8C2 4.68629 4.68629 2 8 2C11.3137 2 14 4.68629 14 8C14 9.29583 13.5892 10.4957 12.8907 11.4765L17.7071 16.2929C18.0976 16.6834 18.0976 17.3166 17.7071 17.7071C17.3166 18.0976 16.6834 18.0976 16.2929 17.7071L11.4765 12.8907C10.4957 13.5892 9.29583 14 8 14C4.68629 14 2 11.3137 2 8Z"
+                              fill="#9CA3AF"></path>
+                    </svg>
+                    <input id="search-input-desktop" class="search-input" name="search_query" type="text" placeholder="${_("Search")}"/>
+                </label>
         </div>
         % endif
         <div class="logo-and-mobile-icons">
@@ -87,11 +84,19 @@ from openedx.core.djangoapps.site_configuration import helpers as configuration_
                     </svg>
                 </div>
 
-                <!-- Search bar (hidden by default) -->
-                <div class="mobile-search-bar hidden">
-                    <input type="text" placeholder="Search..." class="search-input" />
-                </div>
-
+                % if user.is_authenticated:
+                % else:
+                <a href="/login${login_query()}" class="mobile-icon mobile-user-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                              d="M12 4C9.79086 4 8 5.79086 8 8C8 10.2091 9.79086 12 12 12C14.2091 12 16 10.2091 16 8C16 5.79086 14.2091 4 12 4ZM6 8C6 4.68629 8.68629 2 12 2C15.3137 2 18 4.68629 18 8C18 11.3137 15.3137 14 12 14C8.68629 14 6 11.3137 6 8Z"
+                              fill="#333333"></path>
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                              d="M12 16C8.13401 16 5 19.134 5 23C5 23.5523 4.55228 24 4 24C3.44772 24 3 23.5523 3 23C3 18.0294 7.02944 14 12 14C16.9706 14 21 18.0294 21 23C21 23.5523 20.5523 24 20 24C19.4477 24 19 23.5523 19 23C19 19.134 15.866 16 12 16Z"
+                              fill="#333333"></path>
+                    </svg>
+                </a>
+                % endif
 
             </div>
         </div>
@@ -101,6 +106,18 @@ from openedx.core.djangoapps.site_configuration import helpers as configuration_
             <%include file="navbar-not-authenticated.html" args="online_help_token=online_help_token"/>
         % endif
     </div>
+
+    </div>
+    <div class="course-search-mobile hidden">
+        <label class="input-holder"><span class="sr">${_("Search for a course")}</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path fill-rule="evenodd" clip-rule="evenodd"
+                      d="M8 4C5.79086 4 4 5.79086 4 8C4 10.2091 5.79086 12 8 12C10.2091 12 12 10.2091 12 8C12 5.79086 10.2091 4 8 4ZM2 8C2 4.68629 4.68629 2 8 2C11.3137 2 14 4.68629 14 8C14 9.29583 13.5892 10.4957 12.8907 11.4765L17.7071 16.2929C18.0976 16.6834 18.0976 17.3166 17.7071 17.7071C17.3166 18.0976 16.6834 18.0976 16.2929 17.7071L11.4765 12.8907C10.4957 13.5892 9.29583 14 8 14C4.68629 14 2 11.3137 2 8Z"
+                      fill="#9CA3AF"></path>
+            </svg>
+            <input id="search-input-mobile" class="search-input" name="search_query" type="text"
+                   placeholder="${_("Search")}"/>
+        </label>
     </div>
     <!-- Navigation Tabs for Explore and My Learning -->
     % if user.is_authenticated:
@@ -108,7 +125,7 @@ from openedx.core.djangoapps.site_configuration import helpers as configuration_
         <div class="nav-container">
             <div class="nav-tabs">
                 <a href="/explore" style="text-decoration: none;" class="nav-link explore active">Explore</a>
-                <a href="/my-learning" style="text-decoration: none;" class="nav-link my-learning">My Learning</a>
+                <a href="${reverse('dashboard')}" style="text-decoration: none;" class="nav-link my-learning">My Learning</a>
             </div>
         </div>
     </div>
@@ -158,9 +175,8 @@ from openedx.core.djangoapps.site_configuration import helpers as configuration_
 % endif
 
 <script>
-  // Define toggleSearchBar in the global scope
   function toggleSearchBar() {
-      const searchBar = document.querySelector('.mobile-search-bar');
+      const searchBar = document.querySelector('.course-search-mobile');
       if (searchBar) { // Added check for robustness
           searchBar.classList.toggle('hidden');
       }
@@ -168,80 +184,21 @@ from openedx.core.djangoapps.site_configuration import helpers as configuration_
 
   document.addEventListener('DOMContentLoaded', function() {
     const mobileSearchIcon = document.querySelector('.mobile-search-icon');
-    const mainHeader = document.querySelector('.main-header');
-    const searchInput = document.querySelector('#search-input'); // Get the input field
+    const searchContainer = document.querySelector('.course-search-mobile');
 
     // Event listener for the mobile search icon click
-    if (mobileSearchIcon && mainHeader) { // Removed searchInput check here, not needed for this listener
+    if (mobileSearchIcon && searchContainer) { // Removed searchInput check here, not needed for this listener
       mobileSearchIcon.addEventListener('click', function() {
-        mainHeader.classList.toggle('mobile-search-active');
+        searchContainer.classList.toggle('mobile-search-active');
 
         // Optional: If you still want to focus the input when the icon is clicked and bar becomes active
-        if (mainHeader.classList.contains('mobile-search-active')) {
-            const mobileSearchBarInput = document.querySelector('.mobile-search-bar .search-input');
+        if (searchContainer.classList.contains('mobile-search-active')) {
+            const mobileSearchBarInput = document.querySelector('.course-search-mobile .search-input');
             if (mobileSearchBarInput) {
                 mobileSearchBarInput.focus(); // Focus the input inside the mobile search bar
             }
         }
-
-        // Call toggleSearchBar defined globally
         toggleSearchBar();
-      });
-    }
-
-    // Existing keyup listener for the main search input
-    const mainSearchInput = document.querySelector('#search-input');
-    if (mainSearchInput) {
-        mainSearchInput.addEventListener('keyup', (e) => {
-            if (e.keyCode === 13) {
-                // Ensure the form exists before trying to submit
-                const searchForm = document.querySelector('#search-form');
-                if (searchForm) {
-                   searchForm.submit();
-                }
-            }
-        });
-    }
-
-    // Consider adding similar keyup listener for the mobile search input if needed
-    const mobileSearchBarInput = document.querySelector('.mobile-search-bar .search-input');
-     if (mobileSearchBarInput) {
-        mobileSearchBarInput.addEventListener('keyup', (e) => {
-            if (e.keyCode === 13) {
-                // Decide what should happen when Enter is pressed in mobile search
-                // e.g., submit the main form or perform a different action
-                 const searchForm = document.querySelector('#search-form');
-                 if (searchForm) {
-                    // Update the main form's input value before submitting, if necessary
-                    const mainSearchInput = document.querySelector('#search-input');
-                    if(mainSearchInput) {
-                        mainSearchInput.value = mobileSearchBarInput.value;
-                    }
-                    searchForm.submit();
-                 }
-            }
-        });
-    }
-
-    // toggleSearchBar function is now defined outside this listener
-  });
-
-  // Mobile user dropdown toggle
-  document.addEventListener('DOMContentLoaded', function() {
-    const mobileUserIcon = document.querySelector('.mobile-user-icon');
-    const mobileUserDropdown = document.querySelector('.mobile-user-dropdown');
-
-    if (mobileUserIcon && mobileUserDropdown) {
-      mobileUserIcon.addEventListener('click', function(e) {
-        e.stopPropagation();
-        mobileUserDropdown.classList.toggle('hidden');
-      });
-
-      // Close dropdown when clicking outside
-      document.addEventListener('click', function(e) {
-        if (!mobileUserIcon.contains(e.target) && !mobileUserDropdown.contains(e.target)) {
-          mobileUserDropdown.classList.add('hidden');
-        }
       });
     }
   });
