@@ -41,14 +41,6 @@ from openedx.core.djangoapps.site_configuration import helpers as configuration_
     catch(e){window.attachEvent("onload", $buo_f)}
   </script>
 % endif
-<script>
-    const input = document.querySelector('#search-input');
-    input.addEventListener('keyup', (e) => {
-        if (e.keyCode === 13) {
-            document.querySelector('#search-form').submit();
-        }
-    })
-</script>
 <header class="global-header ${'slim' if course else ''}">
     <div class="header-container">
     % if settings.FEATURES.get('ENABLE_COOKIE_POLICY_BANNER', use_cookie_banner):
