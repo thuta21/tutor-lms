@@ -33,7 +33,13 @@ from openedx.core.lib.courses import course_image_url
   return "https://openedx.burmapass.top/api/courses/v2/blocks/?course_id=" + courseId + "&all_blocks=true&depth=all&block_types_filter=chapter,sequential&fields=display_name,descendants&nav_depth=3";
   }
 
-  // const accessToken = 'iz52Y568uOFURP73WCZmDq9lLvMYczdvljCzIu2Za7W2g1vQck7Qvw2saS6YKKRr'; local
+  const cookieString = document.cookie;
+  const cookie = cookieString
+          .split(';')
+          .map(row => row.trim())
+          .find(row => row.startsWith('edx-jwt-cookie-header-payload='));
+
+  // const accessToken = 'iz52Y568uOFURP73WCZmDq9lLvMYczdvljCzIu2Za7W2g1vQck7Qvw2saS6YKKRr'; // local
   const accessToken = '0571f00e0b302aabdbb45fdeef264714d3fb1d250677a8ebbe4d25921929d4e674cb751c6d8fa24ae4e21eceab0b4f6d2fbe52cfad5f17fbac120a0c076d5804';
   const encodedCourseId = encodeURIComponent("${course.id | n, js_escaped_string}");
   const apiURL = buildApiUrl(encodedCourseId);
@@ -67,7 +73,7 @@ from openedx.core.lib.courses import course_image_url
     url: apiURL,
     type: 'GET',
     dataType: 'json',
-    headers: {
+    headers: cookie ? {} : {
       "Authorization": "Bearer " + accessToken
     },
     success: function(data) {
