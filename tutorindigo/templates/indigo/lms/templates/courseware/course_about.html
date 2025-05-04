@@ -73,7 +73,9 @@ from openedx.core.lib.courses import course_image_url
     url: apiURL,
     type: 'GET',
     dataType: 'json',
-    headers: cookie ? {} : {
+    headers: cookie ? {
+      "Authorization": "Bearer " + accessToken
+    } : {
       "Authorization": "Bearer " + accessToken
     },
     success: function(data) {
