@@ -68,22 +68,43 @@ from openedx.core.lib.courses import course_image_url
     }
     return result;
   }
+    fetch(apiURL, {
+      method: 'GET',
+      credentials: 'omit', // Ensures cookies or HTTP credentials are not sent
+      headers: {
+        'Authorization': 'Bearer ' + accessToken,
+        'Content-Type': 'application/json'
+      }
+    })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then(data => {
+        const structured = buildHierarchyFromDescendants(data);
+        renderCourseStructure(structured);
+      })
+      .catch(error => {
+        console.error('Failed to fetch course structure:', error);
+      });
 
-  $.ajax({
-    url: apiURL,
-    type: 'GET',
-    dataType: 'json',
-    headers: cookie ? {} : {
-      "Authorization": "Bearer " + accessToken
-    },
-    success: function(data) {
-      const structured = buildHierarchyFromDescendants(data);
-      renderCourseStructure(structured)
-    },
-    error: function(xhr, status, error) {
-      console.error('Failed to fetch course structure:', error);
-    }
-  });
+    //$.ajax({
+      //url: apiURL,
+      //type: 'GET',
+      //dataType: 'json',
+      //headers: {
+     //   "Authorization": "Bearer " + accessToken
+     // },
+     // success: function(data) {
+        //const structured = buildHierarchyFromDescendants(data);
+      //  renderCourseStructure(structured)
+      //},
+      //error: function(xhr, status, error) {
+     //   console.error('Failed to fetch course structure:', error);
+     // }
+    //});
 
     function renderCourseStructure(courseData) {
       const container = document.getElementById('course-container');
