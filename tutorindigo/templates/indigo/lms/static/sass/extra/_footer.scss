@@ -1,16 +1,36 @@
 // Include custom Footer
 .wrapper-footer {
-  background: linear-gradient(90deg, #006400 0%, #006400 6.25%, #016501 12.5%, #036703 18.75%, #056A05 25%, #086D08 31.25%, #0A700A 37.5%, #0E740E 43.75%, #117811 50%, #147B14 56.25%, #187F18 62.5%, #1A821A 68.75%, #1D851D 75%, #1F881F 81.25%, #218A21 87.5%, #228B22 93.75%, #228B22 100%);
+  background: linear-gradient(
+    90deg,
+    #006400 0%,
+    #006400 6.25%,
+    #016501 12.5%,
+    #036703 18.75%,
+    #056a05 25%,
+    #086d08 31.25%,
+    #0a700a 37.5%,
+    #0e740e 43.75%,
+    #117811 50%,
+    #147b14 56.25%,
+    #187f18 62.5%,
+    #1a821a 68.75%,
+    #1d851d 75%,
+    #1f881f 81.25%,
+    #218a21 87.5%,
+    #228b22 93.75%,
+    #228b22 100%
+  );
+  
   color: #fff;
   padding: 0;
-  border-top: 1px solid #E5E7EB;
+  border-top: 1px solid #e5e7eb;
 }
 
 footer.tutor-container {
   margin: 0 auto;
   padding: 0;
   width: 100%;
-  max-width: 100%;
+  max-width: 1600px;
   text-align: left;
   box-sizing: border-box;
   color: #fff;
@@ -68,7 +88,7 @@ footer.tutor-container {
     flex-wrap: wrap;
     align-items: flex-start;
     gap: 20px;
-    border-top: 1px solid #E5E7EB;
+    border-top: 1px solid #e5e7eb;
     justify-content: flex-start;
     margin: 0;
 
@@ -79,7 +99,7 @@ footer.tutor-container {
     }
 
     a {
-      color: #fff;
+      color: #fff !important;
       text-decoration: none;
       font-weight: 400;
       font-size: 14px;

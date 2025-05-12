@@ -1,5 +1,152 @@
 @import "fonts";
 
+$app-primary-50: #E9F3E9;
+$app-primary-100: #BADBBA;
+$app-primary-200: #99CA99;
+$app-primary-300: #6BB16B;
+$app-primary-400: #4EA24E;
+$app-primary-500: #228B22;
+$app-primary-600: #1F7E1F;
+$app-primary-700: #186318;
+$app-primary-800: #134C13;
+$app-primary-900: #0E3A0E;
+
+$app-text-header: #272D27;
+
 #main{
     background-color: $secondary;
+}
+
+.button {
+    background-color: $app-primary-500 !important;
+    color: white !important;
+}
+
+.button:hover {
+    background-color: $app-primary-500 !important;
+    color: white !important;
+    border-color: $app-primary-500 !important;
+}
+
+a {
+    color: $app-primary-500 !important;
+    cursor: pointer;
+}
+
+a:hover {
+    color: $app-primary-500 !important;
+}
+
+.wrapper-header .nav-dd .title:hover {
+    color: $app-primary-500 !important;
+}
+
+.view-container .content-supplementary .bit-publishing .wrapper-pub-actions .action-copy {
+    border-color: $app-primary-500 !important;
+    color: $app-primary-500 !important;
+}
+
+.view-container .content-supplementary .bit-publishing .wrapper-pub-actions .action-copy:hover {
+    background-color: $app-primary-500 !important;
+    border-color: $app-primary-500 !important;
+    color: white !important;
+}
+
+.view-container .content-supplementary .bit-publishing .wrapper-pub-actions .action-publish {
+    background-color: $app-primary-500 !important;
+    border-color: $app-primary-500 !important;
+    color: white !important;
+}
+
+.view-container .content-supplementary .bit-publishing .wrapper-pub-actions .action-publish:hover {
+    background-color: $app-primary-500 !important;
+}
+
+.incontext-editor.is-editable .incontext-editor-open-action:hover {
+    background-color: $app-primary-500 !important;
+}
+
+.access-button:hover {
+    background-color: transparent !important;
+}
+
+.wrapper-xblock .wrapper-xblock .header-actions .actions-list .action-item .action-button:hover {
+    background-color: $app-primary-500 !important;
+    border-color: $app-primary-500 !important;
+}
+
+.view-container .content-supplementary .unit-tags .wrapper-tags .action-primary {
+    border-color: $app-primary-500 !important;
+    color: $app-primary-500 !important;
+}
+
+.view-container .content-supplementary .unit-tags .wrapper-tags .action-primary:hover {
+    background-color: $app-primary-500 !important;
+    color: white !important;
+}
+
+.jump-nav .nav-item .title:hover, .jump-nav .nav-item .title:active {
+    color: $app-primary-500 !important;
+}
+
+.wrapper-sock, .wrapper-footer {
+    display: none !important;
+}
+
+.btn-primary, .btn-brand {
+  background-color: $app-primary-500 !important;
+  border-color: $app-primary-500 !important;
+}
+
+.xmodule_display.xmodule_ProblemBlock div.problem button.btn-brand:hover {
+  background-color: $app-primary-700 !important;
+  border-color: $app-primary-700 !important;
+}
+
+.wrapper-xblock.level-element:hover {
+  border-color: $app-primary-500 !important;
+}
+
+.btn-default:hover, .btn-default.is-hovered, .btn-default:focus, .btn-default.is-focused {
+  background-color: $app-primary-500 !important;
+  border-color: $app-primary-500 !important;
+}
+
+.xblock--drag-and-drop .drag-container .option {
+  background-color: $app-primary-500 !important;
+}
+
+.openassessment .is--in-progress.openassessment__steps__step {
+  border-top-color: $app-primary-500 !important;
+}
+
+.openassessment .list--actions .action--submit {
+  background-color: $app-primary-500 !important;
+  border-color: $app-primary-500 !important;
+  color: white !important;
+}
+
+.openassessment .list--actions .action--submit:hover {
+  background-color: $app-primary-500 !important;
+  border-color: $app-primary-500 !important;
+  color: white !important;
+}
+
+.step__status__value {
+    background-color: $app-primary-500 !important;
+}
+
+.openassessment .ui-slidable__container .ui-slidable:not([disabled]) {
+    color: $app-primary-500 !important;
+    &:hover {
+        color: $app-primary-500 !important;
+    }
+    &:focus{
+        color: $app-primary-500 !important;
+    }
+}
+
+[class*="view-"] .xblock-visibility_view .is-not-configured .button, .view-outline .content-primary .no-content .button, .view-static-pages .content-primary .add-pages .button, .view-container .content-primary .no-container-content .button, .view-textbooks .content-primary .no-textbook-content .button, .view-group-configurations .content-primary .no-content .button, .view-certificates .content-primary .no-content .button, [class*="view-"] .xblock-visibility_view .is-not-configured .action, .view-outline .content-primary .no-content .action, .view-static-pages .content-primary .add-pages .action, .view-container .content-primary .no-container-content .action, .view-textbooks .content-primary .no-textbook-content .action, .view-group-configurations .content-primary .no-content .action, .view-certificates .content-primary .no-content .action, .add-xblock-component .new-component .new-component-type .add-xblock-component-button, .wrapper-mast .mast.has-actions .nav-actions .button.new-button, .wrapper-mast .mast.has-actions .nav-actions .button.button-new, .notification.has-actions .action-primary.new-button, .notification.has-actions .action-primary.button-new, .notice-create.has-actions .list-actions .action-primary, .view-uploads .no-asset-content .new-button, .view-dashboard .content .notice-incontext.has-actions .list-actions .action-create-course, .view-dashboard .content .notice-incontext.has-actions .list-actions .action-create-library, .view-dashboard .content .notice-incontext.list-notices .notice-item.has-actions .list-actions .action-create-course, .view-dashboard .content .notice-incontext.list-notices .notice-item.has-actions .list-actions .action-create-library, .view-import .action-choose-file, .view-import .wrapper-file-name .submit-button, .view-settings .group-settings.assignment-types .actions .new-button, .view-settings .group-settings.course-learning-info .actions .new-button, .view-settings .group-settings.instructor-types .actions .new-button, .view-team .content .notice-create.has-actions .list-actions .action-primary, .wrapper-xblock .xblock-message.no-container-content.xblock-message.no-container-content .button, .wrapper-xblock .xblock-message.no-container-content.xblock-message.no-container-content .action {
+    background-color: $app-primary-500 !important;
+    border-color: $app-primary-500;
 }

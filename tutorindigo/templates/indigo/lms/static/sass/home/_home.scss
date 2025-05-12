@@ -1,7 +1,8 @@
 // Include custom home
 section.home {
-  max-width: 100%;
+  max-width: 1600px;
   padding: 0 80px;
+  margin: 0 auto;
 
   @media (max-width: 768px) {
     padding: 0 28px;
@@ -18,7 +19,7 @@ section.home {
 
 .global-header .nav-links .secondary {
   .btn-holder {
-    letter-spacing: -.32em;
+    letter-spacing: -0.32em;
     margin: 0 -7px;
 
     .nav-item {
@@ -64,7 +65,26 @@ section.home {
 
       h1 {
         color: transparent;
-        background: linear-gradient(90deg, #228B22 0%, #228D2B 6.25%, #229033 12.5%, #22923C 18.75%, #229544 25%, #21974D 31.25%, #219A55 37.5%, #219C5E 43.75%, #219F66 50%, #21A16F 56.25%, #21A377 62.5%, #21A680 68.75%, #21A888 75%, #20AB91 81.25%, #20AD99 87.5%, #20B0A2 93.75%, #20B2AA 100%);
+        background: linear-gradient(
+          90deg,
+          #228b22 0%,
+          #228d2b 6.25%,
+          #229033 12.5%,
+          #22923c 18.75%,
+          #229544 25%,
+          #21974d 31.25%,
+          #219a55 37.5%,
+          #219c5e 43.75%,
+          #219f66 50%,
+          #21a16f 56.25%,
+          #21a377 62.5%,
+          #21a680 68.75%,
+          #21a888 75%,
+          #20ab91 81.25%,
+          #20ad99 87.5%,
+          #20b0a2 93.75%,
+          #20b2aa 100%
+        );
         background-clip: text;
         font-size: 60px;
         font-weight: 800;
@@ -102,17 +122,16 @@ section.home {
         p {
           font-size: 20px;
           line-height: 28px;
-          color: #6E726E;
+          color: #6e726e;
           font-style: normal;
           margin: 0;
           display: flex;
         }
 
         @media (min-width: 769px) {
-            justify-content: start;
+          justify-content: start;
         }
       }
-
     }
   }
 }
@@ -138,10 +157,10 @@ section.home {
     box-sizing: border-box; // Include padding in width calculation
 
     @include media-breakpoint-down(md) {
-       width: 50%; // Two columns on smaller screens
+      width: 50%; // Two columns on smaller screens
     }
     @include media-breakpoint-down(sm) {
-       width: 100%; // One column on mobile
+      width: 100%; // One column on mobile
     }
 
     .course {
@@ -194,7 +213,7 @@ section.home {
           justify-content: space-between;
           align-items: center;
           font-size: 16px;
-          color: #6E726E;
+          color: #6e726e;
           margin-bottom: 8px;
           line-height: 1.2;
           font-family: $font-family-lato;
@@ -214,7 +233,7 @@ section.home {
         .course-title {
           font-size: 20px;
           font-weight: 700;
-          color: #272D27;
+          color: #272d27;
           margin: 0;
           line-height: 1.4;
           display: -webkit-box;
@@ -238,7 +257,8 @@ section.home {
 }
 
 // Responsive adjustments
-@media (max-width: 991px) { // Medium screens and below
+@media (max-width: 991px) {
+  // Medium screens and below
   .custom-courses li {
     padding: 0 8px;
     .course-title {
@@ -254,11 +274,12 @@ section.home {
 .course-info-title {
   font-family: $font-family-lato;
   font-size: 20px;
-  color: #272D27;
+  color: #272d27;
   font-weight: 700;
 }
 
-@media (max-width: 576px) { // Small screens
+@media (max-width: 576px) {
+  // Small screens
   .custom-course-list-container {
     padding: 20px 0;
   }

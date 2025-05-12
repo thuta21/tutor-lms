@@ -6,7 +6,7 @@ import typing as t
 
 import importlib_resources
 from tutor import hooks
-from tutormfe.hooks import PLUGIN_SLOTS
+from tutormfe.hooks import PLUGIN_SLOTS, MFE_APPS
 from tutor.__about__ import __version_suffix__
 
 from .__about__ import __version__
@@ -124,7 +124,7 @@ hooks.Filters.ENV_PATCHES.add_items(
             """
 
 RUN npm install @edly-io/indigo-frontend-component-footer@^2.0.0
-RUN npm install '@edx/frontend-component-header@npm:@edly-io/indigo-frontend-component-header@^3.2.2'
+RUN npm install '@edx/frontend-component-header@git+https://github.com/naynyeinchan/frontend-component-header.git#feat/theme'
 RUN npm install '@edx/brand@npm:@edly-io/indigo-brand-openedx@^2.2.2'
 
 """,
