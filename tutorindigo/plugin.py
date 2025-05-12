@@ -41,6 +41,11 @@ config: t.Dict[str, t.Dict[str, t.Any]] = {
     "overrides": {},
 }
 
+@MFE_APPS.add()
+def _remove_some_my_mfe(mfes):
+    mfes.pop("profile")
+    return mfes
+
 # Theme templates
 hooks.Filters.ENV_TEMPLATE_ROOTS.add_item(
     str(importlib_resources.files("tutorindigo") / "templates")
@@ -108,7 +113,6 @@ hooks.Filters.CONFIG_OVERRIDES.add_items(list(config["overrides"].items()))
 indigo_styled_mfes = [
     "learning",
     "learner-dashboard",
-    "profile",
     "account",
     "discussions",
 ]
