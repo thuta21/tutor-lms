@@ -22,8 +22,8 @@ config: t.Dict[str, t.Dict[str, t.Any]] = {
     "defaults": {
         "VERSION": __version__,
         "WELCOME_MESSAGE": "The place for all your online learning",
-        "PRIMARY_COLOR": "#15376D",  # Indigo
-        "ENABLE_DARK_TOGGLE": True,
+        "PRIMARY_COLOR": "#228B22",  # Indigo
+        "ENABLE_DARK_TOGGLE": False,
         # Footer links are dictionaries with a "title" and "url"
         # To remove all links, run:
         # tutor config save --set INDIGO_FOOTER_NAV_LINKS=[]
@@ -125,7 +125,7 @@ hooks.Filters.ENV_PATCHES.add_items(
 
 RUN npm install @edly-io/indigo-frontend-component-footer@^2.0.0
 RUN npm install '@edx/frontend-component-header@git+https://github.com/naynyeinchan/frontend-component-header.git#feat/theme'
-RUN npm install '@edx/brand@npm:@edly-io/indigo-brand-openedx@^2.2.2'
+RUN npm install '@edx/brand@npm:@git+https://github.com/naynyeinchan/brand-openedx.git'
 
 """,
         )
@@ -137,7 +137,7 @@ RUN npm install '@edx/brand@npm:@edly-io/indigo-brand-openedx@^2.2.2'
 hooks.Filters.ENV_PATCHES.add_item(
     (
         "mfe-dockerfile-post-npm-install-authn",
-        "RUN npm install '@edx/brand@npm:@edly-io/indigo-brand-openedx@^2.2.2'",
+        "RUN npm install '@edx/brand@git+https://github.com/naynyeinchan/brand-openedx.git'",
     )
 )
 
