@@ -124,7 +124,7 @@ hooks.Filters.ENV_PATCHES.add_items(
             """
 
 RUN npm install @edly-io/indigo-frontend-component-footer@^2.0.0
-RUN npm install '@edx/frontend-component-header@npm:@naynyeinchan/frontend-component-header:@latest'
+RUN npm install '@edx/frontend-component-header@npm:@naynyeinchan/frontend-component-header'
 RUN npm install '@edx/brand@git+https://github.com/naynyeinchan/brand-openedx.git'
 
 """,
